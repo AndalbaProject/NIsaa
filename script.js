@@ -10,7 +10,7 @@ const CONFIG = {
    CHARACTER BUILDER — setiap mood menggunakan foto figurine
    ============================================================ */
 const MOOD_PHOTOS = {
-  normal: "img6.png",   // coffee boy — chill, santai
+  normal: "img6.PNG",   // coffee boy — chill, santai
   curious: "img5.png",  // beanie girl — curious, tertanya-tanya
   happy: "img2.png",    // bear boy — happy, excited!
   angry: "img1.png",    // red hood TNT — marah!
