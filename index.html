@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>for you ♡</title>
+  <meta name="description" content="a little cute website made with love for your birthday." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400;1,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- floating hearts background -->
+  <div class="hearts-bg" id="heartsBg" aria-hidden="true"></div>
+
+  <!-- music control -->
+  <button class="music-toggle" id="musicToggle" aria-label="putar / hentikan musik">
+    <span class="note">♪</span>
+  </button>
+
+  <div class="app" id="app">
+
+    <!-- ============ 1. INTRO ============ -->
+    <section class="screen" data-screen="intro">
+      <div class="screen-inner">
+        <p class="hi-text">Hi</p>
+        <div class="cat-wrap big" data-cat="normal"></div>
+        <h1 class="title">Holla, dengan Ra'id disini 👋</h1>
+        <button class="btn solid" data-go="announce">tap disinii &lt;3</button>
+      </div>
+    </section>
+
+    <!-- ============ 2. PASSWORD ============ -->
+    <section class="screen active" data-screen="gate">
+      <div class="screen-inner">
+        <div class="cat-wrap huge" data-cat="curious"></div>
+        <h2 class="title sm">Hi love, try to guess the password,<br />I bet u knoww!!</h2>
+
+        <div class="pin-dots" id="pinDots">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+
+        <div class="keypad" id="keypad">
+          <button data-key="1">1</button>
+          <button data-key="2">2</button>
+          <button data-key="3">3</button>
+          <button data-key="4">4</button>
+          <button data-key="5">5</button>
+          <button data-key="6">6</button>
+          <button data-key="7">7</button>
+          <button data-key="8">8</button>
+          <button data-key="9">9</button>
+          <span class="spacer"></span>
+          <button data-key="0">0</button>
+          <button data-key="del" class="del">⌫</button>
+        </div>
+
+        <p class="clue">clue : your birthday</p>
+      </div>
+    </section>
+
+    <!-- ============ 3. ANNOUNCE ============ -->
+    <section class="screen" data-screen="announce">
+      <div class="screen-inner">
+        <div class="cat-wrap small sticker-card" data-cat="happy">
+          <span class="deco star a">✦</span>
+          <span class="deco star b">★</span>
+          <span class="deco star c">✦</span>
+        </div>
+        <h2 class="title">This is a very special day<br />because it's my favorite person's Birthday</h2>
+        <button class="btn solid" data-go="ready">open it &lt;3</button>
+      </div>
+    </section>
+
+    <!-- ============ 4. READY ============ -->
+    <section class="screen" data-screen="ready">
+      <div class="screen-inner">
+        <div class="cat-wrap small" data-cat="arms">
+          <span class="deco hb a">💛</span>
+          <span class="deco hb b">💗</span>
+        </div>
+        <h2 class="title">sudah siap belommm?</h2>
+        <div class="btn-row">
+          <button class="btn solid" data-go="pic1">Udahh</button>
+          <button class="btn outline" id="nooBtn" data-go="angry">Nggak</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. ANGRY ============ -->
+    <section class="screen" data-screen="angry">
+      <div class="screen-inner">
+        <div class="cat-wrap small" data-cat="angry">
+          <span class="deco angry">💢</span>
+        </div>
+        <h2 class="title angry-text">
+          WAH PARAH, HADIAH DARI RA'ID DITOLAK MENTAH-MENTAH LHOYA!! </h2>
+        <button class="btn solid" data-go="ready">back</button>
+      </div>
+    </section>
+
+    <!-- ============ 6. LAST SCREEN ============ -->
+    <section class="screen" data-screen="pic1">
+      <div class="screen-inner">
+        <div class="photo-frame">
+          <span class="photo" style="background-image:url('img1.png')"></span>
+        </div>
+        <h2 class="title sm">Okayy last one, i made something for your birthday, read it slowly okay</h2>
+        <button class="btn solid" id="enterOcean">klik ini&lt;3</button>
+      </div>
+    </section>
+
+  </div><!-- /.app -->
+
+  <!-- ═══════════════════════════════════════════════
+       OCEAN BIRTHDAY PAGE (hidden until triggered)
+       ═══════════════════════════════════════════════ -->
+  <div id="ocean-page" style="display:none;">
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <canvas id="petal-canvas"></canvas>
+
+    <audio id="audioPlayer" preload="auto"></audio>
+
+    <div class="music-player" id="oceanMusicPlayer">
+      <div class="disc" id="musicDisc">🎵</div>
+      <div class="track-info">
+        <div class="track-title" id="trackTitle">Bahagia</div>
+        <div class="track-artist" id="trackArtist">GAC</div>
+      </div>
+      <button class="play-btn" id="prevBtn" aria-label="Previous track">⏮</button>
+      <button class="play-btn" id="playBtn" aria-label="Toggle music">▶</button>
+      <button class="play-btn" id="nextBtn" aria-label="Next track">⏭</button>
+    </div>
+
+    <div id="ocean-content">
+      <div class="wrapper">
+
+        <section class="hero">
+          <p class="hero-eyebrow reveal">a birthday tide of blue</p>
+          <h1 class="hero-title reveal">Happy Birthday<br>My <em> Favorite Person</em></h1>
+
+          <div class="scroll-indicator reveal">
+            <span>scroll</span>
+            <div class="scroll-line"></div>
+          </div>
+        </section>
+
+        <div class="divider reveal"><span class="divider-icon">✦</span></div>
+
+        <section class="section">
+          <div class="reveal">
+            <span class="eyebrow">the little things, the big things</span>
+            <h2 class="section-title">Things I Appreciate<br>About You 🤍</h2>
+          </div>
+          <div class="grid-container">
+            <div class="card reveal">
+              <span class="card-icon">🤍</span>
+              <div class="card-title">The Kindest Person</div>
+              <div class="card-desc">
+                Nisaa tuu orangg yangg palingg baikk yangg akuu kenall. Aku harap jalan yang Nisaa lewati selalu ditumbuhi bunga, dan langit di atas Nisaa selalu mendung sejuk.
+              </div>
+            </div>
+            <div class="card reveal">
+              <span class="card-icon">✨</span>
+              <div class="card-title">The Way You Work Hard</div>
+              <div class="card-desc">
+                Kamu mengejar dunia sampai tanpa sadar terpatah-patah tulang demi membuat semuanya terlihat luar biasa. Ingat, Nisaa berhak lelah, berhak gagal, dan berhak untuk istirahat.
+              </div>
+            </div>
+            <div class="card reveal">
+              <span class="card-icon">🌻</span>
+              <div class="card-title">Your Random Light</div>
+              <div class="card-desc">
+                Makasih banyak udaa muncul di hidup aku yang dulu sepi. Sekarang ada Nisaa yang selalu nyinarii hari-hariku dengan segala kelakuan random-mu yang lucu dan ceria.
+              </div>
+            </div>
+            <div class="card reveal">
+              <span class="card-icon">🍀</span>
+              <div class="card-title">Your Strength</div>
+              <div class="card-desc">
+                Makasih udah berhasil bangkit dari sakit hati yang tak terkatakan. Teruslah hidup sampai Tuhan bilang "sudah cukup". Jangan sungkan minta bantuan, Ra'id akan selalu siap bantu Nisaa!
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <span class="eyebrow">your birthday ocean</span>
+          <h2 class="section-title">An Ocean Full of<br>Wishes For You</h2>
+          <div class="garden-box">
+            <div class="flowers-row">
+              <div class="flower-item" data-msg="🐬 — You Might be The Light."><img src="img1.png" alt=""></div>
+              <div class="flower-item" data-msg="🐠 — I am Proud of You."><img src="img2.png" alt=""></div>
+              <div class="flower-item" data-msg="🐢 — DO not Change, Just be Better."><img src="img3.png" alt=""></div>
+              <div class="flower-item" data-msg="🐙 — Having a Perfect Life."><img src="img4.png" alt=""></div>
+              <div class="flower-item" data-msg="🐳 — I Hope Life Treats You Well."><img src="img5.png" alt="" style="transform: scale(1.5); z-index: 10;"></div>
+              <div class="flower-item" data-msg="🦈 — Always Be Happy."><img src="img6.png" alt=""></div>
+            </div>
+            <p id="garden-message">✦ tap a sea creature to reveal its secret message ✦</p>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <span class="eyebrow">a little soundtrack for you</span>
+          <h2 class="section-title">Top 3 Lagu<br>Untukmu</h2>
+          <div class="playlist-box">
+            <div class="playlist-head">
+              <div class="playlist-cover">🎧</div>
+              <div class="playlist-meta">
+                <div class="pl-label">playlist</div>
+                <div class="pl-name">For nisaa</div>
+                <div class="pl-sub">3 lagu · diputar dengan sepenuh hati</div>
+              </div>
+            </div>
+            <div class="track-list" id="trackList"></div>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <span class="eyebrow">our precious moments</span>
+          <h2 class="section-title">A Little Photo Album</h2>
+          <div class="photo-album-grid">
+            <div class="album-card"><img src="gambar1.jpeg" alt=""></div>
+            <div class="album-card"><img src="gambar2.jpeg" alt=""></div>
+            <div class="album-card"><img src="gambar3.jpeg" alt=""></div>
+            <div class="album-card"><img src="gambar4.jpeg" alt=""></div>
+            <div class="album-card"><img src="gambar5.jpeg" alt=""></div>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <span class="eyebrow">our story, written</span>
+          <h2 class="section-title">A Letter For You</h2>
+          <div class="letter-display-box">
+            <p class="letter-paragraph">Happy birthday, Nisaa.</p>
+            <p class="letter-paragraph">Nisaa udaa jalaninn 1 tahunn yangg luarr biasaa hebatt. Harii inii, 2 Juli 2026 iniii, aku inginn jadii salah satu orangg yangg merayakan kelahirann Nisaa. Samaa sepertii mentarii yangg tersenyumm indahh saat tawaa pertamamuu bergemaa, sepertii kicauann burungg gerejaa yangg terharuu mendengarr tangismuu, akuu inginn jadii lampion yangg selaluu menyinarii hidupp Nisaa.</p>
+            <p class="letter-paragraph">Dii usiaa Nisaa yangg sudaa lumayann matangg inii, Raidd berharappp Nisaa masihh ingatt sesekalii beristirahatt darii duuniaa yangg bikinn Nisaa lelahh. Jangann sampee Nisaa terlaluu mengejarr duniaa, yangg tanpaa Nisaa sadarii terpatah patahh tulangg Nisaa membuatt semuanyaa terlihatt luarr biasaa. Nisaa tuu orangg yangg palingg baikk yangg akuu kenall, Nisaa berhakk gagall, berhakk kecewaa, berhakk lelahh, dann Nisaa berhakk untukk istirahatt.</p>
+            <p class="letter-paragraph">Dann Raidd harapp dii usiaa Nisaa yangg mulaii bertambahh ini, setiapp jalan yangg Nisaa lewatii dii tumbuhii bungaa. Raidd harapp nasii Nisaa selaluu hangatt, Raidd harapp langitt dii atass Nisaa selaluu mendungg, Raidd harapp setiapp lampu laluu lintas yangg Nisaa lewatii selaluu hijau. Raidd harapp ilmu Nisaa mengalirr derass bak air terjunn, Raidd harapp setiapp harii Nisaa selaluu ceriaa dengann tawa Nisaa yangg indahh.</p>
+            <p class="letter-paragraph">Makasihh banyakk Nisaa udaa muncull dii hidupp aku yangg duluu sepii. Sekarangg adoo Nisaa yangg selaluu nyinarii dengann segalaa kelakuann randomm Nisaaa. Makasih la bangkitt darii sakitt hatii yangg takk terkatakan Nisaa. Teruslaa hidupp sampaii Tuhan bilangg "sudah cukup".</p>
+            <p class="letter-paragraph">Jikaa Nisaa gagall, lelahh, kecewa, jangan maluu untukk menangiss dann teruslaa berbagii ceritaa. Dann jangan sungkann mintaa bantuann darii Raidd. Insha Allah kaloo Raidd bisoo, pastii Raidd bantuu Nisaa. Maaf kaloo Raidd cumaa bisoo ngasih semakk inii Nisaa.</p>
+            <p class="letter-paragraph">- Dari Ra'id, si tukang sibuk</p>
+
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <div class="closing-letter">
+            <h2 class="closing-title">You Are<br>More Loved Than You Realize</h2>
+            <p class="closing-body">
+              You Are More Loved Than You Realize
+
+              Mungkin kamu tidak selalu melihatnya.
+
+              Mungkin kamu terlalu sibuk menjaga orang lain sampai lupa melihat dirimu sendiri.
+
+              Tapi ada orang-orang yang bahagia karena kamu ada.
+
+              Ada orang-orang yang tersenyum ketika namamu muncul di layar mereka.
+
+              Ada orang-orang yang diam-diam bersyukur karena dipertemukan denganmu.
+
+              Aku salah satunya.
+
+              Selamat ulang tahun, nisaa.
+
+              Terima kasih sudah bertahan sejauh ini.
+
+              Dan terima kasih karena, tanpa sadar, kamu sudah menjadi salah satu bagian paling hangat dari hari-hariku.
+              🤍
+            </p>
+            <div class="closing-sig">— Made with love, just for you 🤍</div>
+            <div class="closing-stars">✦ ✦ ✦</div>
+          </div>
+        </section>
+
+      </div>
+
+      <footer class="site-footer">made with love, just for you</footer>
+    </div>
+
+    <!-- PHOTO MODAL -->
+    <div id="photo-modal" class="modal">
+      <span class="modal-close">&times;</span>
+      <img class="modal-content" id="modal-img" alt="">
+    </div>
+
+  </div><!-- /#ocean-page -->
+
+  <audio id="audioPlayer" loop preload="auto">
+    <source src="song1.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
